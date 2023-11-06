@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Página Inicial</title>
+</head>
+<body>
+  <h1>Jogos Disponíveis</h1>
+  <ul id="gameList"></ul>
+
+  <script>
+    const gameList = document.getElementById('gameList');
+
+    // Função para listar os jogos na pasta "jogos"
+    function listGamesInFolder() {
+      fetch('/jogos') // Substitua por um caminho relativo à pasta "jogos"
+        .then((response) => response.json())
+        .then((data) => {
+          data.games.forEach((gameName) => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.textContent = gameName;
+            link.href = 'javascript:void(0);';
+            link.addEventListener('click', () => openGame(gameName));
+            listItem.appendChild(link);
+            gameList.appendChild(listItem);
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+
+    // Função para abrir o jogo
+    function openGame(gameName) {
+      alert(`Abrindo o jogo: ${gameName}`);
+      // Após exibir o alerta, redirecione para a página do jogo em andamento
+      window.location.href = 'sr.html'; // Substitua pelo nome da sua página de jogo em andamento
+    }
+
+    // Listar os jogos na inicialização da página
+    listGamesInFolder();
+  </script>
+</body>
+</html>

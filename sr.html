@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jogo em Andamento</title>
+  <style>
+    /* Estilos de layout */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* Estilos para a área do jogo */
+    #gameArea {
+      width: 640px;
+      height: 480px;
+      background-color: #333; /* Cor de fundo da área do jogo */
+      border: 2px solid #fff;
+    }
+
+    /* Estilos para os botões de controle */
+    #gameControls {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #0062B7; /* Azul PlayStation */
+      color: #fff;
+      border: none;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Jogo em Andamento</h1>
+
+  <!-- Área do Jogo -->
+  <div id="gameArea"></div>
+
+  <!-- Controles do Jogo -->
+  <div id="gameControls">
+    <button id="btnA">A</button>
+    <button id="btnB">B</button>
+    <button id="btnX">X</button>
+    <button id="btnY">Y</button>
+    <button id="btnStart">Start</button>
+    <button id="btnSelect">Select</button>
+  </div>
+
+  <!-- Script para lidar com a lógica do jogo e controles -->
+      <!-- Script para lidar com a lógica do jogo e mostrar botões -->
+<script>
+  // Função para executar o jogo selecionado
+  function startSelectedGame() {
+    // Obtém o nome do jogo selecionado da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedGame = urlParams.get('game');
+
+    // Caminho para a pasta "jogos"
+    const gamesFolder = '/jogos/'; // Substitua pelo caminho correto
+
+    // Verifica se o nome do jogo foi especificado
+    if (selectedGame) {
+      // Carrega e executa o jogo com base no nome selecionado
+      loadAndRunGame(gamesFolder + selectedGame);
+      // Mostra os botões
+      showButtons();
+    } else {
+      alert('Nenhum jogo selecionado');
+    }
+  }
+
+  // Função para carregar e executar o jogo
+  function loadAndRunGame(gamePath) {
+    // Implemente a lógica de carregamento e execução do jogo aqui
+    // Certifique-se de que o jogo esteja localizado no caminho especificado.
+    console.log('Carregando e executando o jogo:', gamePath);
+  }
+
+  // Função para mostrar os botões
+  function showButtons() {
+    // Crie os botões (personalize de acordo com as necessidades)
+    const buttonContainer = document.getElementById('buttonContainer');
+    const buttonA = document.createElement('button');
+    buttonA.textContent = 'A';
+    buttonA.addEventListener('click', () => onButtonClick('A'));
+
+    const buttonB = document.createElement('button');
+    buttonB.textContent = 'B';
+    buttonB.addEventListener('click', () => onButtonClick('B'));
+
+    // Adicione os botões ao contêiner
+    buttonContainer.appendChild(buttonA);
+    buttonContainer.appendChild(buttonB);
+    // Adicione mais botões conforme necessário
+
+    // Personalize os estilos dos botões
+    buttonA.style.margin = '5px';
+    buttonB.style.margin = '5px';
+    // Personalize os estilos de outros botões conforme necessário
+  }
+
+  // Função para lidar com o clique nos botões (substitua com a lógica real)
+  function onButtonClick(buttonName) {
+    console.log(`Botão ${buttonName} foi clicado.`);
+    // Adicione a lógica do botão aqui
+  }
+
+  // Inicie o jogo selecionado quando a página carregar
+  startSelectedGame();
+</script>
+</body>
+</html>
